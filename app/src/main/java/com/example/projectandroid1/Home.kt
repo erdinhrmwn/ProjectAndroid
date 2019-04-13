@@ -18,6 +18,7 @@ class Home : AppCompatActivity() {
         setContentView(R.layout.home)
         if (!UserHelper(this).StatusLogin) {
             startActivity(Intent(this, Login::class.java))
+            finish()
         }
         val menu: Menu = navigation.menu
         selectedMenu(menu.getItem(0))

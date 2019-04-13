@@ -1,112 +1,120 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:gravity="center"
-              android:background="#C5C5C5">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C5C5C5"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="other ask type"
-              android:textSize="30sp"
-              android:textColor="#CE6526"
-              android:textAllCaps="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="other ask type"
+        android:textAllCaps="true"
+        android:textColor="#CE6526"
+        android:textSize="30sp" />
 
     <LinearLayout
-            android:id="@+id/uploadImage2"
-            android:layout_width="wrap_content"
+        android:id="@+id/uploadImage2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:backgroundTint="#2C000000"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_upload" />
+
+        <TextView
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/button"
-            android:backgroundTint="#2C000000"
-            android:gravity="center">
-
-        <ImageView android:layout_width="100dp"
-                   android:layout_height="50dp"
-                   android:src="@drawable/ic_upload"/>
-
-        <TextView android:layout_width="300dp"
-                  android:layout_height="wrap_content"
-                  android:textAlignment="center"
-                  android:text="Upload Image"
-                  android:textSize="20sp"
-                  android:textColor="#fff"/>
+            android:text="Upload Image"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <TextView
-            android:text="Choose category"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:text="Choose category" />
 
     <Spinner
-            android:id="@+id/spinner2"
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:entries="@array/SpinnferFor" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textColorHint="#000">
+
+        <EditText
+            android:id="@+id/etCharge2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"/>
-
-    <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="#000"
-            android:textColor="#000">
-
-        <EditText
-                android:id="@+id/etCharge2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:ems="10"
-                android:inputType="number"
-                android:hint="Set default charge"/>
+            android:ems="10"
+            android:hint="Set default charge"
+            android:inputType="number" />
 
     </android.support.design.widget.TextInputLayout>
 
     <LinearLayout
-            android:id="@+id/setLocation2"
+        android:id="@+id/setLocation2"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_location" />
+
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center">
-        <ImageView android:layout_width="30dp"
-                   android:layout_height="30dp"
-                   android:src="@drawable/ic_location"
-                   android:scaleType="fitCenter"/>
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:textAlignment="center"
-                  android:layout_gravity="center"
-                  android:textColor="#000"
-                  android:text="Set Location"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Set Location"
+            android:textAlignment="center"
+            android:textColor="#000" />
     </LinearLayout>
 
     <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="#000"
-            android:textColor="#000">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textColorHint="#000">
 
         <EditText
-                android:id="@+id/etDesc2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:ems="10"
-                android:inputType="textMultiLine"
-                android:hint="Description"/>
+            android:id="@+id/etDesc2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="Description"
+            android:inputType="textMultiLine" />
 
     </android.support.design.widget.TextInputLayout>
 
     <Button
-            android:id="@+id/btnPost1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button"
-            android:text="POST"
-            android:textColor="#fff"/>
+        android:id="@+id/btnPost1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:text="POST"
+        android:textColor="#fff" />
 </LinearLayout>
