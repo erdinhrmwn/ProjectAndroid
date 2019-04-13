@@ -11,4 +11,7 @@ class UserHelper(ctx: Context) {
 
     var StatusLogin = preferences.getBoolean("LOGIN", false)
         set(value) = preferences.edit().putBoolean("LOGIN", value).apply()
+
+    var Name = preferences.getString("nama", "User")
+        set(value) = preferences.edit().putString("nama", value).apply()
 }

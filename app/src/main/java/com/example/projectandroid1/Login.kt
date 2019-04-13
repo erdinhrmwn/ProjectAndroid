@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
-import com.example.projectandroid1.Fragment.HomeFragment
 import com.example.projectandroid1.Helper.UserHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -16,9 +15,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.login.*
-import java.lang.Exception
 
-class Login: AppCompatActivity() {
+class Login : AppCompatActivity() {
     // deklarasi untuk request code
     private val RC_SIGN_IN = 7
     // deklarasai untuk sign in client
@@ -38,13 +36,7 @@ class Login: AppCompatActivity() {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
         btnLogin.setOnClickListener {
-            if (etEmail.text.toString() == "erdinhermawann@gmail.com" && etPassword.text.toString() == "password"){
-                startActivity(Intent(this, Home::class.java))
-                UserHelper(this).StatusLogin = true
-                finish()
-            }else{
-                Toast.makeText(this, "Please check your credentials again", Toast.LENGTH_SHORT).show()
-            }
+            signInWithFirebase(etEmail.text.toString(), etPassword.text.toString())
         }
         tvRegister.setOnClickListener { startActivity(Intent(this, Register::class.java)) }
 
@@ -54,6 +46,21 @@ class Login: AppCompatActivity() {
     private fun signIn() {
         val signInIntent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    private fun signInWithFirebase(email: String, password: String) {
+        mAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Log.d("LOGIN", "Login Success")
+                    val user = mAuth.currentUser
+                    updateUI(user)
+                } else {
+                    Log.w("LOGIN", "Login Failed", task.exception)
+                    Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+                    updateUI(null)
+                }
+            }
     }
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
@@ -72,22 +79,23 @@ class Login: AppCompatActivity() {
     }
 
     private fun updateUI(user: FirebaseUser?) {
-        if (user != null){
-            Toast.makeText(this, "Hello ${user.displayName}", Toast.LENGTH_SHORT).show()
+        if (user != null) {
+            Toast.makeText(this, "Hello ${user.email}", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, Home::class.java))
             UserHelper(this).StatusLogin = true
+            UserHelper(this).Name = user.email
             finish()
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN){
+        if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account!!)
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 Log.w("LOGIN", "Login Failed", e)
             }
         }
