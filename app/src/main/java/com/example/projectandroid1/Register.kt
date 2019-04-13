@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
-import com.example.projectandroid1.Helper.UserHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.register.*
@@ -50,11 +49,11 @@ class Register : AppCompatActivity() {
     private fun registerWithFirebase(email: String, password: String) {
         mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful){
+                if (task.isSuccessful) {
                     Log.d("REGISTER", "Register Success")
                     val user = mAuth.currentUser
                     updateUI(user)
-                }else{
+                } else {
                     Log.w("REGISTER", "Register Failed", task.exception)
                     Toast.makeText(this, "Register Failed", Toast.LENGTH_SHORT).show()
                     updateUI(null)
