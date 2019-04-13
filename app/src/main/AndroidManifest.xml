@@ -19,6 +19,9 @@
         <activity android:name=".Home"/>
         <activity android:name=".Login"/>
         <activity android:name=".Register"/>
+        <activity android:name=".Upload.FullCost"/>
+        <activity android:name=".Upload.OtherAsk"/>
+        <activity android:name=".Upload.PeopleWanted"/>
     </application>
 
 </manifest>
