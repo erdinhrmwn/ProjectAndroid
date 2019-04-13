@@ -40,10 +40,10 @@ class Login : AppCompatActivity() {
         }
         tvRegister.setOnClickListener { startActivity(Intent(this, Register::class.java)) }
 
-        sign_in_button_google.setOnClickListener { signIn() }
+        sign_in_button_google.setOnClickListener { signInWithGoogle() }
     }
 
-    private fun signIn() {
+    private fun signInWithGoogle() {
         val signInIntent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
