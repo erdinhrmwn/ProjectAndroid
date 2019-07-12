@@ -83,7 +83,6 @@ class Login : AppCompatActivity() {
             Toast.makeText(this, "Hello ${user.email}", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, Home::class.java))
             UserHelper(this).StatusLogin = true
-            UserHelper(this).Name = user.email
             finish()
         }
     }

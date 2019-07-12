@@ -25,9 +25,9 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        name_profile.text = "Hello, " + UserHelper(view.context).Name
-
         mAuth = FirebaseAuth.getInstance()
+
+        name_profile.text = "Hello, " + (mAuth.currentUser?.email ?: String)
         logoutBtn.setOnClickListener {
             UserHelper(view.context).StatusLogin = false
             mAuth.signOut()

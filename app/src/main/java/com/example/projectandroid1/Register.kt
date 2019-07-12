@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.register.*
 
 class Register : AppCompatActivity() {
@@ -19,30 +18,18 @@ class Register : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         btnRegister.setOnClickListener {
-            if (etUsernameReg.text.toString() == "" && etEmailReg.text.toString() == "" &&
-                etPasswordReg.text.toString() == "" && etConfirmPasswordReg.text.toString() == ""
+            if (etUsernameReg.text.toString().isEmpty() || etEmailReg.text.toString().isEmpty() ||
+                etPasswordReg.text.toString().isEmpty() || etConfirmPasswordReg.text.toString().isEmpty()
             ) {
                 Toast.makeText(this, "Please check your credentials again", Toast.LENGTH_SHORT).show()
             } else {
                 if (etPasswordReg.text.toString() == etConfirmPasswordReg.text.toString()) {
                     registerWithFirebase(etEmailReg.text.toString(), etPasswordReg.text.toString())
                 } else {
+
                     Toast.makeText(this, "Please check your credentials again", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val currentUser = mAuth.currentUser
-        updateUI(currentUser)
-    }
-
-    private fun updateUI(user: FirebaseUser?) {
-        if (user != null) {
-            startActivity(Intent(this, Login::class.java))
-            finish()
         }
     }
 
@@ -51,12 +38,13 @@ class Register : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d("REGISTER", "Register Success")
-                    val user = mAuth.currentUser
-                    updateUI(user)
+                    Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT).show()
+                    mAuth.signOut()
+                    startActivity(Intent(this, Login::class.java))
+                    finish()
                 } else {
                     Log.w("REGISTER", "Register Failed", task.exception)
                     Toast.makeText(this, "Register Failed", Toast.LENGTH_SHORT).show()
-                    updateUI(null)
                 }
             }
     }
